@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+	<title>Document</title>
+	<link rel="stylesheet" href="Snippet/css/reset.css">
+<style>
+body{
+	overflow:hidden;
+}
+/*가로 큰 슬라이드 박스*/
+section.horizon_slide {
+	overflow:hidden;
+	position:relative;
+	margin: 100px auto;
+	padding-left:5vw;
+	width:60vw;
+	height:14.5vw;
+}
+/*가로 돌아가는 슬라이드 박스*/
+section.horizon_slide > .slide_box{
+	display:flex;
+	flex-wrap:wrap;
+	width:600vw;
+}
+/*슬라이드 이미지 간격*/
+section.horizon_slide > .slide_box > div:first-child{
+	margin-left:0;
+}
+section.horizon_slide > .slide_box > div {
+	margin-left:5vw;
+}
+/*이미지 크기*/
+img {
+	width:50vw;
+}
+/*슬라이드 버튼*/
+button {
+	position:absolute;
+	top:50%;
+	width:5vw;
+	height:5vw;
+	transform:translateY(-50%);
+}
+button.left {
+	left:0vw;
+}
+button.right {
+	right:0vw;
+}
+/*버튼 가상태그*/
+button::before{
+	content:"";
+	display:block;
+	position:absolute;
+	top:50%;
+	left:50%;	
+	margin-top:-0.5vw;
+	margin-left:0.5vw;
+	width:1vw;
+	height:1vw;
+	border-top:0.1vw black solid;
+	border-left:0.1vw black solid;
+	transform:rotate(-45deg) translate(-50%,-50%);
+}
+button.right::before{
+	margin-left:0;
+	border:none;
+	border-right:0.1vw black solid;
+	border-bottom:0.1vw black solid;
+	transform:rotate(-45deg) translate(-50%,-50%);
+}
+/*세로 큰 슬라이드 박스*/
+section.vertical_slide {
+	overflow:hidden;
+	position:relative;
+	margin:0 auto;
+	padding-left:5vw;
+	padding-right:5vw;
+	width:60vw;
+	height:14.4vw;
+}
+/*세로 돌아가는 슬라이드 박스*/
+section.vertical_slide > .slide_box{
+	display:flex;
+	flex-wrap:wrap;
+	height:150vw;
+}
+</style>
+<script src="Snippet/js/jquery-3.4.1.min.js">	</script>
+<script src="Snippet/js/jquery.mousewheel.min.js">	</script>
+<script src="Snippet/js/jquery-ui.js">	</script>
+<script src="Snippet/js/jquery.touchSwipe.js">	</script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+<script>
+$(function(){
+	// 첫번째 슬라이드_버튼
+	$("button#horizon_left").click(function(){
+		$("section.horizon_slide > .slide_box:not(animated)").animate({marginLeft:"-=55vw"},400,function(){
+			$("section.horizon_slide > .slide_box").stop().css({marginLeft:"0"})
+			$("section.horizon_slide > .slide_box > div").stop().first().appendTo("section.horizon_slide > .slide_box");
+			return false;
+		});	
+	});
+	$("button#horizon_right").click(function(){
+		$("section.horizon_slide > .slide_box > div").stop().last().prependTo("section.horizon_slide  > .slide_box");
+		$("section.horizon_slide > .slide_box").stop().css({marginLeft:"-55vw"})
+		$("section.horizon_slide > .slide_box:not(animated)").animate({marginLeft:"+=55vw"},400);
+		return false;
+	});
+	// 두번째 슬라이드 _버튼
+	$("button#vertical_left").click(function(){
+		$("section.vertical_slide > .slide_box:not(animated)").animate({marginTop:"-=14.4vw"},400,function(){
+			$("section.vertical_slide > .slide_box").stop().css({marginTop:"0"})
+			$("section.vertical_slide > .slide_box > div").stop().first().appendTo("section.vertical_slide > .slide_box");
+			return false;
+		});	
+	});
+	$("button#vertical_right").click(function(){
+		$("section.vertical_slide > .slide_box > div").stop().last().prependTo("section.vertical_slide  > .slide_box");
+		$("section.vertical_slide > .slide_box").stop().css({marginTop:"-14.4vw"})
+		$("section.vertical_slide > .slide_box:not(animated)").animate({marginTop:"+=14.4vw"},400);
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<section class="horizon_slide">
+	<button class="left" id="horizon_left"></button>
+	<button class="right" id="horizon_right"></button>
+	<div class="slide_box">
+		<div>
+	      <img src="http://placehold.it/350x100?text=1">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=2">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=3">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=4">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=5">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=6">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=7">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=8">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=9">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=10">
+	    </div>
+	</div>
+</section>
+<section class="vertical_slide">
+	<button class="left" id="vertical_left"></button>
+	<button class="right" id="vertical_right"></button>
+	<div class="slide_box">
+		<div>
+	      <img src="http://placehold.it/350x100?text=1">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=2">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=3">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=4">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=5">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=6">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=7">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=8">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=9">
+	    </div>
+	    <div>
+	      <img src="http://placehold.it/350x100?text=10">
+	    </div>
+	</div>
+</section>
+
+</body>
+</html>
